@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATH FC - Regras do Jogo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <img src="../imagens/logo-marques.png" alt="Logo Marquês" class="logo">
+        <img src="../imagens/match-fc.png" alt="Escudo MATH FC" class="logo-mathfc">
+        <div class="header-content">
+            <h1>MATH FC</h1>
+            <p>A mistura perfeita entre matemática e futebol!</p>
+            <nav>
+                <a href="../index.html">INÍCIO</a>
+                <a href="../regras/index.html" class="active">REGRAS DO JOGO</a>
+                <a href="../sobre-nos/index.html">SOBRE NÓS</a>
+                <a href="../contato/index.html">CONTATO</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ALTERE: confira se as regras abaixo batem com o seu jogo -->
+    <main class="cards-container">
+        <div class="card card-1">
+            <h3>1. Tipo de conta</h3>
+            <p>Na tela inicial, escolha entre <strong>Soma/Subtração</strong>, <strong>Multiplicação</strong> ou <strong>Misto</strong>.</p>
+        </div>
+
+        <div class="card card-2">
+            <h3>2. Dificuldade</h3>
+            <p>Escolha o nível: <strong>Fácil</strong>, <strong>Normal</strong>, <strong>Difícil</strong> ou <strong>Expert</strong>. Quanto mais alto, mais desafiadoras as contas.</p>
+        </div>
+
+        <div class="card card-3">
+            <h3>3. Rodadas</h3>
+            <p>Defina quantas rodadas vai jogar, de <strong>1 a 20</strong>.</p>
+        </div>
+
+        <div class="card card-4">
+            <h3>4. Jogadores</h3>
+            <p>Jogue sozinho no modo <strong>1 Jogador</strong> ou escolha <strong>2 Jogadores</strong>. No modo dupla, cada um digita seu nome e os dois se alternam. A tela mostra de quem é a vez.</p>
+        </div>
+
+        <div class="card card-5">
+            <h3>5. Resolva a conta</h3>
+            <p>Aparece uma conta na tela com <strong>três alternativas</strong>. Escolha a que você acha que está certa.</p>
+        </div>
+
+        <div class="card card-6">
+            <h3>6. Marque o gol</h3>
+            <p>Acertou a conta? Você chuta a bola e marca <strong>ponto</strong>. Errou? A bola não entra e você não pontua.</p>
+        </div>
+
+        <div class="card card-7">
+            <h3>7. Combo</h3>
+            <p>Acertos seguidos formam um <strong>combo</strong>. Quanto mais você acerta sem errar, maior ele fica.</p>
+        </div>
+
+        <div class="card card-8">
+            <h3>8. Placar e tempo</h3>
+            <p>Acompanhe o <strong>placar</strong> e o <strong>cronômetro</strong> no topo da tela. No fim das rodadas, vence quem tiver mais pontos.</p>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 MATH FC - Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var container = document.querySelector('.cards-container');
+            if (!container) return;
+            var cards = container.querySelectorAll('.card');
+
+            function closeActive() {
+                var active = container.querySelector('.card.card-active');
+                if (active) {
+                    active.classList.remove('card-active');
+                    active.setAttribute('aria-pressed', 'false');
+                }
+                container.classList.remove('has-active');
+            }
+
+            function toggleCard(card) {
+                var wasActive = card.classList.contains('card-active');
+                closeActive();
+                if (!wasActive) {
+                    card.classList.add('card-active');
+                    card.setAttribute('aria-pressed', 'true');
+                    container.classList.add('has-active');
+                }
+            }
+
+            cards.forEach(function (card) {
+                card.setAttribute('tabindex', '0');
+                card.setAttribute('role', 'button');
+                card.setAttribute('aria-pressed', 'false');
+                card.addEventListener('click', function () { toggleCard(card); });
+                card.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleCard(card);
+                    }
+                });
+            });
+
+            document.addEventListener('click', function (e) {
+                if (!container.contains(e.target)) closeActive();
+            });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') closeActive();
+            });
+        });
+    </script>
+</body>
+</html>

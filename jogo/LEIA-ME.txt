@@ -1,0 +1,11 @@
+Coloque nesta pasta (jogo/), junto do index.html, os arquivos do jogo com ESTES nomes exatos:
+
+estilo.css   (o estilo do JOGO - nao e o estilo da pagina de inicio)
+script.js
+bola.png
+Audio1.mp3
+Audio2.mp3
+Audio3.mp3
+
+Na Vercel, maiusculas e minusculas importam: "Audio1.mp3" e diferente de "audio1.mp3".
+Depois de colocar os arquivos, pode apagar este LEIA-ME.
